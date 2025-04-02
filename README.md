@@ -41,6 +41,7 @@ This guide introduces essential concepts and hands-on examples for **High Perfor
 | `srun` | Run a command interactively |
 | `sacct` | View past job stats |
 | `scontrol show job <id>` | Inspect job details |
+| `squeue --format="%.18i %.30j %.8u %.8T %.10M %.6D %R"` | Personal recommendation to queue formating |
 
 ---
 
