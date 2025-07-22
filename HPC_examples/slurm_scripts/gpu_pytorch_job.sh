@@ -10,10 +10,15 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:15:00
 
-#SBATCH -D /path/to/your/project
+#SBATCH -D /mnt/lustre_fs/_HPC/SCRATCH/usal_bisite_1/usal_bisite_1_2/Marco/SCAYLE_examples/
 
-source /home/your_user/miniforge3/etc/profile.d/conda.shP
-conda activate your_gpu_env
+
+source /home/usal_bisite_1/COMUNES/miniforge3/etc/profile.d/conda.sh
+module unuse `module use`
+module use /soft/genoa/EB/modules/all
+module load /soft/genoa/EB/modules/all/CUDA/12.2.0
+
+conda activate env_genoa
 
 python gpu_pytorch_example.py
 

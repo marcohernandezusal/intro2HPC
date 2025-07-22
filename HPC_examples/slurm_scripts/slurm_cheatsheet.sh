@@ -4,22 +4,6 @@
 #           Slurm Job Script Guide          #
 #############################################
 
-# ---- Useful SLURM Commands ----
-# squeue            # Show queued and running jobs
-# squeue -u $USER   # Show jobs for the current user
-# sbatch job.sh     # Submit a batch job script
-# scancel <jobid>   # Cancel a specific job
-# sinfo             # Show info about nodes and partitions
-# scontrol show job <jobid>  # Detailed info about a job
-# srun <command>    # Run a command interactively under SLURM
-# sacct             # Show accounting data for completed jobs
-# sstat <jobid>     # Show runtime resource usage for active jobs
-# scontrol show node <nodename>  # Inspect node status
-
-#############################################
-#           Job Submission Options          #
-#############################################
-
 # ---- Job Identification ----
 
 #SBATCH --job-name=my_job_name         # Name of the job (shows in queue)
@@ -35,7 +19,7 @@
 
 #SBATCH --nodes=1                      # Number of nodes (entire machines)
 #SBATCH --ntasks=1                     # Total number of tasks (MPI processes)
-#SBATCH --cpus-per-task=4              # Number of CPU cores per task (OpenMP or multiprocessing)
+#SBATCH --cpus-per-task=4             # Number of CPU cores per task (OpenMP or multiprocessing)
 #SBATCH --gres=gpu:2                   # Generic resources (e.g., 2 GPUs)
 #SBATCH --mem=16G                      # Memory per node (or per task if --mem-per-cpu used)
 
@@ -57,7 +41,7 @@
 # ---- Logging & Debugging ----
 
 #SBATCH --open-mode=append             # Append to output files (instead of overwrite)
-#SBATCH --requeue                      # Allow job to be requeued after node failure
+#SBATCH --requeue                     # Allow job to be requeued after node failure
 #SBATCH --signal=B:USR1@60             # Send signal before timeout (for cleanup/checkpointing)
 
 #############################################

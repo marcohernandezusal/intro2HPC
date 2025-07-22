@@ -10,33 +10,33 @@ logging.basicConfig(
 )
 
 def main():
-    logging.info("PyTorch job started.")
+    logging.info("PyTorch GPU job started.")
     logging.info(f"PyTorch version: {torch.__version__}")
     
     # Check if CUDA is available
-    if torch.cuda.is_available():
-        num_gpus = torch.cuda.device_count()
-        logging.info(f"Number of CUDA devices available: {num_gpus}")
+    # if not torch.cuda.is_available():
+    #     logging.error("CUDA is not available. Exiting.")
+    #     return
+    
+    num_gpus = torch.cuda.device_count()
+    logging.info(f"Number of CUDA devices available: {num_gpus}")
 
-        for i in range(num_gpus):
-            device_name = torch.cuda.get_device_name(i)
-            logging.info(f"GPU {i}: {device_name}")
+    for i in range(num_gpus):
+        device_name = torch.cuda.get_device_name(i)
+        logging.info(f"GPU {i}: {device_name}")
 
-        device = torch.device("cuda:0")
-        logging.info(f"Using device: {device} ({torch.cuda.get_device_name(device)})")
-    else:
-        logging.warning("CUDA is not available. Using CPU instead.")
-        device = torch.device("cpu")
-        logging.info(f"Using device: {device}")
+    device = torch.device("cuda:0")
 
-    # Dummy workload to simulate tensor operations
-    logging.info("Running dummy tensor operation...")
+    logging.info(f"Using device: {device} ({torch.cuda.get_device_name(device)})")
+
+    # Dummy workload to simulate GPU usage
+    logging.info("Running dummy tensor operation on GPU...")
     x = torch.rand((5000, 5000), device=device)
     y = torch.mm(x, x)
     result = y.sum().item()
 
     logging.info(f"Computation complete. Result: {result:.4f}")
-    logging.info("PyTorch job finished.")
+    logging.info("PyTorch GPU job finished.")
 
 if __name__ == "__main__":
     main()
